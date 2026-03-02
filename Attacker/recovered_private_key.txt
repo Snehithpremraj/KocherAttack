@@ -1,0 +1,32 @@
+======================================================================
+RSA PRIVATE KEY - RECOVERED VIA TIMING ATTACK
+Hochschule Schmalkalden - Seminar Project
+======================================================================
+
+Timestamp: 2026-01-15 11:47:59
+Bits recovered: 50
+Oracle queries: 2501
+
+----------------------------------------------------------------------
+PUBLIC KEY (Known):
+----------------------------------------------------------------------
+N (modulus):
+0x72843b5b575d35a352402faced08aa0f7bdcf75afc31ff5ae01d880675c4f22c910013ac89c186b35a8a94d3640666439208f68df09f616388b7bee7e33ef57dd6e6cdd265daf8caeede3fc009ac92da64fbe69561ab9b151c5885cb0b3be1d87a5eb91e0130f97bdd1349cb667c698e66795f6df20f4108e8cb098a0aaff00eccec15520cd6f02012587a416ae945103fbf81c07dca272849fb50105119a8121d2d01b9991c38e990634a376fe664a27b9afe91add2c4fae8dafd4c91799ebb7c4e5f8d48e1b2995c98f2b24d5e86fcabc8453966e4c8b245524ac8a364e2d291ec1017d2c4ee32472c0c40d4c35094cd0e1dd5b22c103e13bee7e8b2ec64ac433ef6a0073bc19d8f57f9b33d8472a8b8f591783679e3074f5dcd0c1bdd540572b6f7aa95c24e4e6aed921f3ebe9378ddc892d860a34062a0ec1ba3a9adaffd7bd20669c35e5ec9661109d7206328cfb399db5687889d75c28c9ec3a65cbc933e4cd383bbcfc0cd342a228db1eb2e87753145535dd433798481be8eaf9f3e01
+
+e (exponent): 65537
+
+----------------------------------------------------------------------
+PRIVATE KEY (Recovered):
+----------------------------------------------------------------------
+d (private exponent):
+0x80000300
+
+d (decimal):
+2147484416
+
+d (binary):
+00000000000000000010000000000000000000001100000000
+
+======================================================================
+USAGE: This key can decrypt all messages encrypted with N, e
+======================================================================

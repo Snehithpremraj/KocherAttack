@@ -1,0 +1,48 @@
+Starting Nmap 7.94SVN ( https://nmap.org ) at 2026-01-11 13:54 CET
+Nmap scan report for localhost (127.0.0.1)
+Host is up (0.00017s latency).
+Not shown: 998 closed tcp ports (conn-refused)
+PORT     STATE SERVICE     VERSION
+8000/tcp open  http        BaseHTTPServer 0.6 (Python 3.12.3)
+|_http-title: Schmalkalden Coffee Roasters - Premium Local Beans
+|_http-server-header: BaseHTTP/0.6 Python/3.12.3
+8080/tcp open  http-proxy?
+| fingerprint-strings: 
+|   DNSStatusRequestTCP, DNSVersionBindReqTCP, FourOhFourRequest, GetRequest, HTTPOptions, Help, JavaRMI, LANDesk-RC, LPDString, NotesRPC, RTSPRequest, SIPOptions, Socks4, X11Probe: 
+|     {"status": "error", "message": "Expecting value: line 1 column 1 (char 0)"}
+|   GenericLines: 
+|_    {"status": "error", "message": "Expecting value: line 3 column 1 (char 4)"}
+1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
+SF-Port8080-TCP:V=7.94SVN%I=7%D=1/11%Time=69639D98%P=x86_64-pc-linux-gnu%r
+SF:(GetRequest,4B,"{\"status\":\x20\"error\",\x20\"message\":\x20\"Expecti
+SF:ng\x20value:\x20line\x201\x20column\x201\x20\(char\x200\)\"}")%r(HTTPOp
+SF:tions,4B,"{\"status\":\x20\"error\",\x20\"message\":\x20\"Expecting\x20
+SF:value:\x20line\x201\x20column\x201\x20\(char\x200\)\"}")%r(RTSPRequest,
+SF:4B,"{\"status\":\x20\"error\",\x20\"message\":\x20\"Expecting\x20value:
+SF:\x20line\x201\x20column\x201\x20\(char\x200\)\"}")%r(FourOhFourRequest,
+SF:4B,"{\"status\":\x20\"error\",\x20\"message\":\x20\"Expecting\x20value:
+SF:\x20line\x201\x20column\x201\x20\(char\x200\)\"}")%r(Socks4,4B,"{\"stat
+SF:us\":\x20\"error\",\x20\"message\":\x20\"Expecting\x20value:\x20line\x2
+SF:01\x20column\x201\x20\(char\x200\)\"}")%r(GenericLines,4B,"{\"status\":
+SF:\x20\"error\",\x20\"message\":\x20\"Expecting\x20value:\x20line\x203\x2
+SF:0column\x201\x20\(char\x204\)\"}")%r(DNSVersionBindReqTCP,4B,"{\"status
+SF:\":\x20\"error\",\x20\"message\":\x20\"Expecting\x20value:\x20line\x201
+SF:\x20column\x201\x20\(char\x200\)\"}")%r(DNSStatusRequestTCP,4B,"{\"stat
+SF:us\":\x20\"error\",\x20\"message\":\x20\"Expecting\x20value:\x20line\x2
+SF:01\x20column\x201\x20\(char\x200\)\"}")%r(Help,4B,"{\"status\":\x20\"er
+SF:ror\",\x20\"message\":\x20\"Expecting\x20value:\x20line\x201\x20column\
+SF:x201\x20\(char\x200\)\"}")%r(X11Probe,4B,"{\"status\":\x20\"error\",\x2
+SF:0\"message\":\x20\"Expecting\x20value:\x20line\x201\x20column\x201\x20\
+SF:(char\x200\)\"}")%r(LPDString,4B,"{\"status\":\x20\"error\",\x20\"messa
+SF:ge\":\x20\"Expecting\x20value:\x20line\x201\x20column\x201\x20\(char\x2
+SF:00\)\"}")%r(SIPOptions,4B,"{\"status\":\x20\"error\",\x20\"message\":\x
+SF:20\"Expecting\x20value:\x20line\x201\x20column\x201\x20\(char\x200\)\"}
+SF:")%r(LANDesk-RC,4B,"{\"status\":\x20\"error\",\x20\"message\":\x20\"Exp
+SF:ecting\x20value:\x20line\x201\x20column\x201\x20\(char\x200\)\"}")%r(No
+SF:tesRPC,4B,"{\"status\":\x20\"error\",\x20\"message\":\x20\"Expecting\x2
+SF:0value:\x20line\x201\x20column\x201\x20\(char\x200\)\"}")%r(JavaRMI,4B,
+SF:"{\"status\":\x20\"error\",\x20\"message\":\x20\"Expecting\x20value:\x2
+SF:0line\x201\x20column\x201\x20\(char\x200\)\"}");
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 7.74 seconds

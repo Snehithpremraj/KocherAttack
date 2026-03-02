@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vulnerable RSA Timing Attack Demo - Seminar Server</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; background: #f0f0f0; }
+        .header { background: #dc3545; color: white; padding: 20px; text-align: center; border-radius: 10px; }
+        .warning { background: #ffcc00; padding: 15px; border-left: 5px solid #cc0000; margin: 20px 0; }
+        .endpoint { background: #e9ecef; padding: 15px; margin: 10px 0; border-radius: 5px; }
+        button { background: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; }
+        button:hover { background: #0056b3; }
+        #results { margin-top: 20px; padding: 10px; background: white; border-radius: 5px; min-height: 100px; }
+        pre { background: #f8f9fa; padding: 10px; overflow-x: auto; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🔓 RSA Timing Attack Vulnerable Server</h1>
+        <p>Seminar Demo: Non-constant-time Decryption (Educational Only)</p>
+        <p>Key Size: <span id="keysize">Loading...</span> bits (BSI 3072 Compliant)</p>
+    </div>
+
+    <div class="warning">
+        <strong>⚠️ WARNING:</strong> Intentionally vulnerable to timing side-channel attacks!
+    </div>
+
+    <h2>Server Endpoints</h2>
+    <div class="endpoint">
+        <h3>1. Get Public Key</h3>
+        <button onclick="getPublicKey()">Fetch N, e</button>
+        <pre id="pubkey"></pre>
+    </div>
+
+    <div class="endpoint">
+        <h3>2. Vulnerable Decrypt (Attack Target)</h3>
+        <input type="number" id="vuln_cipher" placeholder="Enter ciphertext (e.g. 12345)" style="width: 200px; padding: 5px;">
+        <button onclick="decryptVulnerable()">Decrypt Vulnerable</button>
+        <div id="vuln_result"></div>
+    </div>
+
+    <div class="endpoint">
+        <h3>3. Secure Decrypt (Comparison)</h3>
+        <input type="number" id="secure_cipher" placeholder="Enter ciphertext" style="width: 200px; padding: 5px;">
+        <button onclick="decryptSecure()">Decrypt Secure</button>
+        <div id="secure_result"></div>
+    </div>
+
+    <h3>Attack Demo Logs</h3>
+    <div id="results">Click buttons to interact. Use timings for side-channel attack demo!</div>
+
+    <script>
+        const HOST = 'http://localhost:8080';
+
+        async function apiCall(command, data = {}) {
+            try {
+                const response = await fetch(`${HOST}/api`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({command, ...data})
+                });
+                return await response.json();
+            } catch(e) {
+                return {status: 'error', message: 'Server not running? Start python3 server.py first!'};
+            }
+        }
+
+        async function getPublicKey() {
+            const res = await apiCall('get_public_key');
+            document.getElementById('pubkey').textContent = JSON.stringify(res, null, 2);
+            if (res.status === 'success') {
+                document.getElementById('keysize').textContent = res.key_size;
+            }
+            logResult('Public Key', res);
+        }
+
+        async function decryptVulnerable() {
+            const ct = document.getElementById('vuln_cipher').value;
+            if (!ct) return alert('Enter ciphertext');
+            const res = await apiCall('decrypt_vulnerable', {ciphertext: ct});
+            document.getElementById('vuln_result').innerHTML = `
+                <strong>Plaintext:</strong> ${res.plaintext}<br>
+                <strong>Time:</strong> ${res.time_us} μs<br>
+                <em>${res.hint || ''}</em>
+            `;
+            logResult('Vulnerable Decrypt', res);
+        }
+
+        async function decryptSecure() {
+            const ct = document.getElementById('secure_cipher').value;
+            if (!ct) return alert('Enter ciphertext');
+            const res = await apiCall('decrypt_secure', {ciphertext: ct});
+            document.getElementById('secure_result').innerHTML = `
+                <strong>Plaintext:</strong> ${res.plaintext}<br>
+                <strong>Time:</strong> ${res.time_us} μs<br>
+                <em>${res.note || ''}</em>
+            `;
+            logResult('Secure Decrypt', res);
+        }
+
+        function logResult(title, res) {
+            const results = document.getElementById('results');
+            results.innerHTML += `<br><strong>${title}:</strong> ${JSON.stringify(res, null, 2)}`;
+            results.scrollTop = results.scrollHeight;
+        }
+    </script>
+</body>
+</html>
